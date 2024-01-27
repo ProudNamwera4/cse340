@@ -3,6 +3,8 @@
 *:before,
 *:after {
   box-sizing: border-box;
+  
+  
 }
 nav ul li {
   float: left;
@@ -21,6 +23,7 @@ nav ul {
   background-color: #333;
   overflow: hidden;
   list-style-type: none;
+  
 }
 #top-header {
   display: grid;
@@ -104,4 +107,17 @@ picture {
     grid-template-columns: 1fr 1fr;
    
   }
+}
+
+#inv-display{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-gap: 30px;
+  
+}
+#inv-display img{
+  width: 400px;
+}
+main h1{
+  text-align: center;
 }
