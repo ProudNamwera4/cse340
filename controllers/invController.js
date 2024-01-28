@@ -30,7 +30,7 @@ invCont.buildByInventoryId = async function (req, res, next) {
     const classModel = data[0].inv_model;
 
     res.render("./inventory/inventory", {
-      title: classYear + "" + classMake + "" + classModel,
+      title: classYear + " " + classMake + " " + classModel,
       nav,
       grid2,
     });

@@ -25,13 +25,17 @@ app.set("layout", "./layouts/layout") // not at views root
 /* ***********************
  * Routes
  *************************/
-app.use("/inv", inventoryRoute)
+//app.use("/inv", inventoryRoute)
 app.set("view engine", "ejs")
 app.use(expressLayouts)
 app.set("layout", "./layouts/layout") // not at views root
 app.use(static)
 // Index route
 app.get("/", utilities.handleErrors(baseController.buildHome))
+// Inventory routes
+//app.use("/inv", inventoryRoute)
+app.use("/inv", utilities.handleErrors(inventoryRoute))
+
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
   next({status: 404, message: 'Sorry, we appear to have lost that page.'})
