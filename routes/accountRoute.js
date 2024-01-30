@@ -11,4 +11,6 @@ router.get("/login", utilities.handleErrors(accController.buildLogin))
 router.get("/registration", utilities.handleErrors(accController.buildRegistration))
 
 
+router.post('/registration', utilities.handleErrors(accController.registerAccount))
+
 module.exports = router;

@@ -14,6 +14,7 @@ const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
 const accountRoute = require("./routes/accountRoute")
 const utilities = require("./utilities/")
+const bodyParser = require("body-parser")
 
 
 //add the session, and access to the database connection
@@ -33,6 +34,11 @@ app.use(session({
   saveUninitialized: true,
   name: 'sessionId',
 }))
+
+app.use(bodyParser.json())
+ // for parsing application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }))
+
 
 // Express Messages Middleware
 app.use(require('connect-flash')())
