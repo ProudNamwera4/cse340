@@ -12,14 +12,14 @@
         <label for="account_email">Email Address: </label>
         <input id="account_email" type="email" name="account_email" required>
         <label for="account_password">Password: </label>
-        <input id="account_password" type="password" name="account_password"
-            pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" required>
-        <span id="showPassword">Show Password</span>
         <span>
             Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special
             character
         </span>
-
+        <input id="account_password" type="password" name="account_password"
+            pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" required>
+        <span id="showPassword">Show Password</span>
+       
         <button id="reg-btn" type="submit">Register</button>
 
     </form>
