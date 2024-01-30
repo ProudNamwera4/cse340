@@ -176,7 +176,7 @@ form button{
   font-weight: 500;
 }
 form input{
-  align-self: right;
+  justify-content: left;
   line-height: 1.5em;
   border-radius: 5px;
   font-size: 1.5em;
@@ -192,4 +192,21 @@ form p{
 }
 form p a{
   color:black;
+}
+/*Registration form*/
+#registration_form{
+  width: 400px;
+  margin-left: 0;
+}
+#registration_form button, #showPassword{
+  margin-left: 0;
+}
+#showPassword{
+  border: 2px solid #000;
+  text-align: center;
+  border-radius: 5px;
+  padding: 2px;
+  width: 7em;
+  margin-top:1em ;
+  font-size:small ;
 }
