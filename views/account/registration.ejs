@@ -3,6 +3,13 @@
 </h1>
 
 <%- messages() %>
+<% if (errors) { %>
+    <ul class="notice">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+  <%  }) %>
+   </ul>
+  <% } %>
 
     <form id="registration_form" action="/account/registration" method="post">
         <label for="account_firstname">First Name:</label>
