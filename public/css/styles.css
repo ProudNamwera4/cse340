@@ -149,11 +149,6 @@ main h1{
 }
 
 /*login form*/
-#login_form{
-  max-width: 50%;
-}
-
-/*Login form*/
 form{
   display: flex;
   flex-wrap: wrap;
@@ -165,6 +160,8 @@ form{
   text-align: center;
   padding: .5em;
   background-color: #77cbb9;
+    width: 610px;
+  margin-left: 0;
 }
 form button{
   margin: auto;
@@ -209,4 +206,12 @@ form p a{
   width: 7em;
   margin-top:1em ;
   font-size:small ;
+}
+
+#add-vehicle-form fieldset{
+  justify-content: left;
+  
+}
+label,input{
+  margin-left: 0;
 }

@@ -16,7 +16,6 @@ const accountRoute = require("./routes/accountRoute")
 const utilities = require("./utilities/")
 const bodyParser = require("body-parser")
 
-
 //add the session, and access to the database connection
 const session = require("express-session")
 const pool = require('./database/')
@@ -70,7 +69,6 @@ app.get("/", utilities.handleErrors(baseController.buildHome))
 app.use("/inv", utilities.handleErrors(inventoryRoute))
 // Account Route
 app.use("/account", utilities.handleErrors(accountRoute))
-
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {

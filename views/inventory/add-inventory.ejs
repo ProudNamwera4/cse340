@@ -1,0 +1,54 @@
+<%# The Content Heading %>
+<% if (title) { %>
+    <h1>
+        <%= title %>
+    </h1>
+    <% } else { res.redirect('/') } %>
+        <% messages() %>
+
+        <form id="add-vehicle-form" action="post">
+            <fieldset>
+                <legend>All Fields  are Required</legend>
+                <label for="classification_name"></label>
+                <select name="classification" id="classification_name" required>
+                    <option value="custom">Custom</option>
+                    <option value="custom">Sport</option>
+                    <option value="custom">SUV</option>
+                    <option value="custom">Truck</option>
+                    <option value="custom">Sudan</option>
+                </select>
+                <label for="inv_make">Make</label>
+                <input name="make" id="inv_make" type="text" required>
+
+                <label for="inv_model">Model</label>
+                <input name="model" id="inv_model" type="text" required>
+
+                <label for="inv_description">Description</label>
+                <input name="description" id="inv_description" type="text" required>
+
+                <label for="inv_image">Image Path</label>
+                <input name="image" id="inv_image" type="text" required>
+
+                <label for="inv_thumbnail">Image Path</label>
+                <input name="thumbnail" id="inv_thumbnail" type="text" required>
+
+                <label for="inv_price">Price</label>
+                <input name="price" id="inv_price" type="number" required>
+
+                <label for="inv_year">Year</label>
+                <input name="year" id="inv_year" type="number" required>
+
+
+                <label for="inv_miles">Miles</label>
+                <input name="miles" id="inv_miles" type="number" required>
+
+                <label for="inv_color">Color</label>
+                <input name="color" id="inv_color" type="text" required>
+
+                <label for="classification_id">Classification ID</label>
+                <input name="classificationId" id="classification_id" type="number">
+
+                <button id="add-classification" type="submit">Add Classification</button>
+
+            </fieldset>
+        </form>
