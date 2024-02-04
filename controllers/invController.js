@@ -34,7 +34,7 @@ invCont.buildByInventoryId = async function (req, res, next) {
       nav,
       grid2,
     });
-  }else {
+  } else {
     const err = new Error("Not Found");
     err.status = 404;
     next(err);
@@ -42,71 +42,112 @@ invCont.buildByInventoryId = async function (req, res, next) {
 };
 
 /* ****************************************
-*  Build Management view
-* *************************************** */
-invCont.buildManagement = async function (req, res, next)  {
-  let nav = await utilities.getNav()
+ *  Build Management view
+ * *************************************** */
+invCont.buildManagement = async function (req, res, next) {
+  let nav = await utilities.getNav();
   res.render("inventory/management", {
     title: "Vehicle Management",
     nav,
     errors: null,
-  })
-}
+  });
+};
 
 /* ****************************************
-*  Build Add Classification view
-* *************************************** */
-invCont.buildAddClassification = async function (req, res, next)  {
-  let nav = await utilities.getNav()
+ *  Build Add Classification view
+ * *************************************** */
+invCont.buildAddClassification = async function (req, res, next) {
+  let nav = await utilities.getNav();
   res.render("inventory/add-classification", {
     title: "Add Classification",
     nav,
     errors: null,
-  })
-}
+  });
+};
 
 /* ****************************************
-*  Process adding a classification
-* *************************************** */
-invCont.addNewClassification = async function (req, res, next)  {
-  let nav = await utilities.getNav()
-  const {classification_name} = req.body
+ *  Process adding a classification
+ * *************************************** */
+invCont.addNewClassification = async function (req, res, next) {
+  let nav = await utilities.getNav();
+  const { classification_name } = req.body;
 
-  const addClassResult = await invModel.addClassification(
-    classification_name,
-  )
+  const addClassResult = await invModel.addClassification(classification_name);
 
   if (addClassResult) {
     req.flash(
       "notice",
       `The ${classification_name} classification was successfully added.`
-    )
+    );
     res.status(201).render("inventory/management", {
       title: "Vehicle Management",
       nav,
-    })
+      errors: null,
+    });
   } else {
-    req.flash("notice", "Sorry, the classification addition failed.")
+    req.flash("notice", "Sorry, the classification addition failed.");
     res.status(501).render("inventory/add-classification", {
-      title: "Add Classification",
+      title: "New Classification",
       nav,
-    })
+      errors: null,
+    });
   }
-}
+};
 
 /* ****************************************
-*  Build Add Inventory view
-* *************************************** */
-invCont.buildAddInventory = async function (req, res, next)  {
-  let nav = await utilities.getNav()
+ *  Build Add Inventory view
+ * *************************************** */
+invCont.buildAddInventory = async function (req, res, next) {
+  let nav = await utilities.getNav();
+  const list = await utilities.buildDropDown();
   res.render("inventory/add-inventory", {
     title: "Add Vehicle",
     nav,
+    list,
     errors: null,
-  })
-}
+  });
+};
 
+/* ****************************************
+ *  Process new vehicle
+ * *************************************** */
+invCont.addInventoryVehicle = async function (req, res) {
+  let nav = await utilities.getNav();
+  
+  const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id } = req.body
+  const id = classification_id;
+  const list = await utilities.buildDropDown(id);
+  const addVehicleResult = await invModel.addVehicleData(
+    inv_make,
+    inv_model,
+    inv_year,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_miles,
+    inv_color,
+    classification_id
+  );
 
-
+  if (addVehicleResult) {
+    req.flash("notice",
+      `Congratulations, you've added ${inv_make} ${inv_model}.`
+    );
+    res.status(201).render("inventory/management", {
+      title: "Vehicle Managenent",
+      nav,
+      errors: null,
+    });
+  } else {
+    req.flash("notice", "Sorry, adding a vehicle failed.");
+    res.status(501).render("inventory/add-inventory", {
+      title: "Add Vehicle error",
+      nav,
+      list,
+      errors: null,
+    });
+  }
+};
 
 module.exports = invCont;

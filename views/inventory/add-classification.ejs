@@ -1,19 +1,24 @@
-<%# The Content Heading %>
-    <% if (title) { %>
-        <h1>
-            <%= title %>
-        </h1>
-        <% } else { res.redirect('/') } %>
-            <% messages() %>
+<h1>
+    <%= title %>
+</h1>
 
-                <form id="add-classification-form" action="/inventory/management" method="post">
+<%- messages() %>
+<% if (errors) { %>
+    <ul class="notice">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+  <%  }) %>
+   </ul>
+  <% } %>
+
+                <form id="add-classification-form" action="./add-classification" method="post">
                     <fieldset>
                         <legend>Field is Required</legend>
                         <label for="classification-name">Classification Name</label>
                         <p>
                             Name must be alphabetic characters only
                         </p>
-                        <input id="classification-name" name="classification name" type="text" required pattern="^[A-Za-z]+">
+                        <input id="classification_name" name="classification_name" type="text" required pattern="^[A-Za-z]+">
                         <button id="add-classification" type="submit">Add Classification</button>
                     </fieldset>
                 </form>

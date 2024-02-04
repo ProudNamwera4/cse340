@@ -1,10 +1,16 @@
 <%# The Content Heading %>
-<% if (title) { %>
-    <h1><%= title %></h1>
-    <% } else {
-      res.redirect('/')
-    } %>
-    <% messages() %>
+<h1>
+  <%= title %>
+</h1>
+
+<%- messages() %>
+<% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
 
     <a href="/inv/add-classification">Add new classification</a><br>
     <a href="/inv/add-inventory">Add new Vehicle</a>

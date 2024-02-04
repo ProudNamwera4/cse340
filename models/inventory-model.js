@@ -43,24 +43,39 @@ async function getInventoryByInvId(inv_id) {
 
 async function addClassification(classification_name){
   try {
-    const sql = "INSERT INTO classification (classification_name account_email) RETURNING *"
+    const sql = "INSERT INTO public.classification(classification_name) VALUES ($1);"
     return await pool.query(sql, [classification_name])
   } catch (error) {
     return error.message
   }
 }
 
-/* *****************************
-*   add new vehicle
-* *************************** */
-async function addInventoryVehicle(inv_make, inv_model, inv_year,inv_description,inv_image,inv_thumbnail,inv_price,inv_miles,inv_color,classification_id){
+
+/*************************************
+ * Check for existsing classifications
+ *************************************/
+async function checkExistingClassification(classification_name) {
   try {
-    const sql = "INSERT INTO account (account_firstname, account_lastname, account_email, account_password, account_type) VALUES ($1, $2, $3, $4, 'Client') RETURNING *"
-    return await pool.query(sql, [inv_make, inv_model, inv_year,inv_description,inv_image,inv_thumbnail,inv_price,inv_miles,inv_color,classification_id])
+    const sql = "SELECT * FROM classification WHERE classification_name = $1"
+    const name = await pool.query(sql, [classification_name])
+    return name.rowCount
   } catch (error) {
     return error.message
   }
 }
 
 
-module.exports = {getInventoryByInvId,getClassifications, getInventoryByClassificationId,addClassification,addInventoryVehicle};
+/* *****************************
+*   add new vehicle
+* *************************** */
+async function addVehicleData(inv_make, inv_model,inv_year,inv_description,inv_image,inv_thumbnail,inv_price,inv_miles,inv_color,classification_id) {
+  try {
+    const sql = "INSERT INTO public.inventory(inv_make, inv_model,inv_year,inv_description,inv_image,inv_thumbnail,inv_price,inv_miles,inv_color,classification_id) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10);"
+    return await pool.query(sql, [inv_make, inv_model,inv_year,inv_description,inv_image,inv_thumbnail,inv_price,inv_miles,inv_color,classification_id])
+  } catch (error) {
+    console.log(error.message)
+  }
+}
+
+
+module.exports = {getInventoryByInvId,getClassifications, getInventoryByClassificationId,checkExistingClassification,addClassification,addVehicleData};

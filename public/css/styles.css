@@ -208,10 +208,9 @@ form p a{
   font-size:small ;
 }
 
-#add-vehicle-form fieldset{
-  justify-content: left;
+#add-vehicle-form fieldset label,#add-vehicle-form fieldset input{
+  display: flex;
+  flex-direction: column;
   
 }
-label,input{
-  margin-left: 0;
-}
+
