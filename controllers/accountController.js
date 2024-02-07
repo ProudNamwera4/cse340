@@ -63,7 +63,7 @@ async function registerAccount(req, res) {
   if (regResult) {
     req.flash(
       "notice",
-      `Congratulations, you\'re registered ${account_firstname}. Please log in.`
+      `Congratulations, you have registered ${account_firstname}. Please login.`
     )
     res.status(201).render("account/login", {
       title: "Login",

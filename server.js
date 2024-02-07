@@ -40,6 +40,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 //add Middleware for the cookieParser
 app.use(cookieParser())
+app.use(utilities.checkJWTToken)
 
 
 // Express Messages Middleware
