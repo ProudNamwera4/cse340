@@ -191,7 +191,7 @@ form p a{
   color:black;
 }
 /*Registration form*/
-#registration_form{
+#registration_form, #updateForm{
   width: 400px;
   margin-left: 0;
 }
@@ -208,9 +208,47 @@ form p a{
   font-size:small ;
 }
 
-#add-vehicle-form fieldset label,#add-vehicle-form fieldset input{
+#add-vehicle-form fieldset label,#add-vehicle-form fieldset input,#updateForm fieldset label,#updateForm fieldset input{
   display: flex;
   flex-direction: column;
   
 }
 
+/*management view*/
+#classificationList{
+  width: 30%;
+}
+table{
+  border-collapse: collapse;
+  width: 50%;
+}
+tr{
+  border: 1px solid black;
+}
+/*
+tr:nth-child(even){
+  background-color: rgb(13, 172, 235);
+}
+th:nth-child(even),td:nth-child(even){
+  background-color: #000;
+
+}*/
+
+  /*Inventory Display View*/
+  #inv-display{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin: auto;
+  }
+  #inv-display div{
+    max-width: 200px;
+  }
+  #inv-display div h2 a{
+    font-size: .90em;
+  }
+  #inv-display li img{
+    height: 125px;
+    width: 200px;
+  }

@@ -14,3 +14,16 @@
 
     <a href="/inv/add-classification">Add new classification</a><br>
     <a href="/inv/add-inventory">Add new Vehicle</a>
+    <h2>Manage Inventory</h2>
+    <%# A paragraph that tells the user to select a classification from the list to see the items belonging to the classification.%>
+    <p>Select a classification from the list:</p>
+    
+    <%# Display the classification list.%>
+    <select name="classification_id" id="classificationList" required value="<%- locals.classification_id %>">
+      <%- list %>
+    <%# An empty table that inventory items returned from the controller will be displayed in.%>
+    <table id="inventoryDisplay"></table>
+
+    <noscript>JavaScript must be enabled to use this page.</noscript>
+
+    <script src="../../js/inventory.js"></script>

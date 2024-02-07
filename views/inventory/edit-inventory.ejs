@@ -1,0 +1,56 @@
+<h1>
+    <%= title %>
+</h1>
+
+<%- messages() %>
+    <% if (errors) { %>
+        <ul class="notice">
+            <% errors.array().forEach(error=> { %>
+                <li>
+                    <%= error.msg %>
+                </li>
+                <% }) %>
+        </ul>
+        <% } %>
+
+            <form id="updateForm" method="post" action="/inv/update/">
+                <fieldset>
+                    <legend>All Fields are Required</legend>
+                    <label for="classification_id">Classifications</label>
+                    <select name="classification_id" id="classification_id" required
+                        value="<%- locals.classification_id %>">
+                        <%- list %><br>
+                            <label for="inv_year">Year</label>
+                            <input type="text" id="inv_year" name="inv_year" required placeholder="4 digit year"
+                                pattern="\d+?" value="<%= locals.inv_year %>">
+                            <label for="inv_make">Make</label>
+                            <input type="text" id="inv_make" name="inv_make" required placeholder="Min of 3 characters"
+                                pattern="^[A-Za-z]+$" value="<%= locals.inv_make %>">
+                            <label for="inv_model">Model</label>
+                            <input type="text" id="inv_model" name="inv_model" required
+                                placeholder="Min of 3 characters" pattern="^[A-Za-z]+$" value="<%= locals.inv_model %>">
+                            <label for="inv_description">Description</label>
+                            <textarea rows="5" cols="28" id="inv_description" name="inv_description"
+                                required><%- locals.inv_description %></textarea>
+                            <label for="inv_image">Full Image</label>
+                            <input type="text" id="inv_image" name="inv_image" required
+                                value="/images/vehicles/no-image.png">
+                            <label for="inv_thumbnail">Thumbnail Image</label>
+                            <input type="text" id="inv_thumbnail" name="inv_thumbnail" required
+                                value="/images/vehicles/no-image-tn.png">
+                            <label for="inv_miles">Mileage</label>
+                            <input type="text" id="inv_miles" name="inv_miles" required placeholder="digits only"
+                                pattern="\d+?" value="<%= locals.inv_miles %>">
+                            <label for="inv_color">Color</label>
+                            <input type="text" id="inv_color" name="inv_color" required pattern="^[A-Za-z]+$"
+                                value="<%= locals.inv_color %>">
+                            <label for="inv_price">Price</label>
+                            <input type="text" id="inv_price" name="inv_price" required placeholder="digits or integers"
+                                pattern="\d+?" value="<%= locals.inv_price %>">
+                            <button id="edit-inventory" type="submit" disabled>Update Inventory</button>
+                            <input type="hidden" name="inv_id" <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+                                <% } %>>
+                </fieldset>
+            </form>
+            <noscript>JavaScript must be enabled to use this page.</noscript>
+            <script src="../../js/inv-update.js""></script>

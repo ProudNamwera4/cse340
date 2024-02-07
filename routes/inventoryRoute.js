@@ -37,4 +37,17 @@ router.post(
   utilities.handleErrors(invController.addInventoryVehicle)
 );
 
+//process the route and return the data as JSON.
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+
+//route to edit inventory item
+router.get("/edit-inventory/:inv_id", utilities.handleErrors(invController.modifyInventory))
+
+
+//route to update inventory item
+router.post("/update/",
+    addVehicleValidate.addVehicleRules(),
+    addVehicleValidate.checkUpdateData,
+    utilities.handleErrors(invController.updateInventory))
+
 module.exports = router;

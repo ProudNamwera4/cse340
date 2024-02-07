@@ -97,16 +97,14 @@ Util.buildInventoryGrid = async function(data){
   return grid
 }
 
-/********************************
- * Build classification drop down menu
- ***********************************/
+
 /********************************
  * Build classification drop down menu
  ***********************************/
 Util.buildDropDown = async function(selection) {
   let data = await invModel.getClassifications()
   let list 
-  list += '<option selected value="">Select A Classification</option>'
+  list += '< id="classificationList" option selected value="">Select A Classification</option>'
   data.rows.forEach((row) => {   
     if (selection == row.classification_id) {
       list += '<option></option>'
@@ -123,12 +121,6 @@ Util.buildDropDown = async function(selection) {
   return list
 }
 
-/* ****************************************
- * Middleware For Handling Errors
- * Wrap other function in this for 
- * General Error Handling
- **************************************** */
-Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
 
 /* ****************************************
 * Middleware to check token validity
@@ -164,6 +156,13 @@ Util.checkLogin = (req, res, next) => {
     return res.redirect("/account/login")
   }
  }
+
+ /* ****************************************
+ * Middleware For Handling Errors
+ * Wrap other function in this for 
+ * General Error Handling
+ **************************************** */
+Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
 
 
 module.exports = Util
