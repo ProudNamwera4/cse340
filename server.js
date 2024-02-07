@@ -15,6 +15,8 @@ const inventoryRoute = require("./routes/inventoryRoute")
 const accountRoute = require("./routes/accountRoute")
 const utilities = require("./utilities/")
 const bodyParser = require("body-parser")
+//require the cookie-parser
+const cookieParser = require("cookie-parser")
 
 //add the session, and access to the database connection
 const session = require("express-session")
@@ -33,10 +35,11 @@ app.use(session({
   saveUninitialized: true,
   name: 'sessionId',
 }))
-
 app.use(bodyParser.json())
  // for parsing application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }))
+//add Middleware for the cookieParser
+app.use(cookieParser())
 
 
 // Express Messages Middleware
