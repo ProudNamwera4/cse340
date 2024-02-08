@@ -213,6 +213,10 @@ form p a{
   flex-direction: column;
   
 }
+form fieldset label,form fieldset input{
+  display: flex;
+  flex-direction: column;
+}
 
 /*management view*/
 #classificationList{

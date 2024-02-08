@@ -38,16 +38,35 @@ router.post(
 );
 
 //process the route and return the data as JSON.
-router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+router.get(
+  "/getInventory/:classification_id",
+  utilities.handleErrors(invController.getInventoryJSON)
+);
 
 //route to edit inventory item
-router.get("/edit-inventory/:inv_id", utilities.handleErrors(invController.modifyInventory))
-
+router.get(
+  "/edit-inventory/:inv_id",
+  utilities.handleErrors(invController.modifyInventory)
+);
 
 //route to update inventory item
-router.post("/update/",
-    addVehicleValidate.addVehicleRules(),
-    addVehicleValidate.checkUpdateData,
-    utilities.handleErrors(invController.updateInventory))
+router.post(
+  "/update/",
+  addVehicleValidate.addVehicleRules(),
+  addVehicleValidate.checkUpdateData,
+  utilities.handleErrors(invController.updateInventory)
+);
+
+//route to delete inventory item
+router.get(
+  "/delete-confirm/:inv_id",
+  utilities.handleErrors(invController.deleteInventoryItem)
+);
+
+//route to delete from database
+router.post(
+  "/delete/",
+  utilities.handleErrors(invController.deleteInventory)
+);
 
 module.exports = router;
