@@ -1,10 +1,16 @@
 <header id="top-header">
-    <span class="siteName">
-      <img src="/images/site/icon.png" alt="icon for the home page">
-      <a href="/" title="Return to home page">CSE Motors</a>
-     
-    </span>
-    <div id="tools">
-      <a title="Click to log in" href="/account/login">My Account</a>
-    </div>
-  </header>
+  <span class="siteName">
+    <img src="/images/site/icon.png" alt="icon for the home page">
+    <a href="/" title="Return to home page">CSE Motors</a>
+
+  </span>
+  <div id="tools">
+    <% if(!locals.loggedin){ %>
+      <a title="Click to log in" href="/account/">My Account</a>
+  <% }else{  
+      const name = locals.accountData.account_firstname %>
+  <a title="Click to log out" href="/account/">Welcome <%- name %>: </a><a href="/">Logout</a><%} %>
+  </div>
+</header>
+
+<script src="../../utilities/index.js"></script>

@@ -3,6 +3,8 @@
 </h1>
 
 <%- messages() %>
+<%const name = locals.accountData.account_firstname %>
+<h3>Welcome <%- name %></h3>
 <h4>You are logged in!</h4>
 <% if (errors) { %>
     <ul class="notice">
