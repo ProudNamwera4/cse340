@@ -37,5 +37,26 @@ router.get(
   utilities.handleErrors(accController.buildManagement)
 );
 
+//route to build edit account information view
+router.get(
+  "/update",
+  utilities.handleErrors(accController.buildUpdateAccount)
+);
+
+//route to update account information
+router.post(
+  "/update",
+  regValidate.updateRules(),
+  regValidate.checkAccountData,
+  utilities.handleErrors(accController.updateAccInfo),
+);
+
+
+//route to update account password
+router.post(
+  "/update",
+  regValidate.passwordRules(),
+  utilities.handleErrors(accController.updatePassword)
+);
 
 module.exports = router;

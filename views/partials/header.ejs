@@ -9,9 +9,8 @@
       <a title="Click to log in" href="/account/">My Account</a>
   <% }else{  
       const name = locals.accountData.account_firstname %>
-  <a title="Click to log out" href="/account/">Welcome <%- name %>: </a><a href="/">Logout</a><%} %>
-  </div>
+  <a title="Click to log out" href="/account/">Welcome <%- name %>: </a><a id="logout" href="/">Logout</a><%} %>
+  </div> 
 </header>
 
-<noscript>JavaScript must be enabled to use this page.</noscript>
-            <script src="../../js/header.js"></script>
+<script src="../../js/header.js"></script>

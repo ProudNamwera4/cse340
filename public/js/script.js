@@ -1,16 +1,8 @@
-const showPasswordBtn = document.getElementById("#showPassword");
-
-
-function showPassword() {
-    const password = document.getElementById("account_password");
-    const passType = document.getAttribute("type");
-    if (passType == "password"){
-        passType = "text";
-        showPasswordBtn.innerHTML = "Hide Password";
+document.querySelector("#showPassword").addEventListener("click", function (){
+    var s = document.getElementById("account_password");
+    if (s.type === "password") {
+        s.type = "text";
     } else {
-        password.type = "password";
-        showPasswordBtn.innerHTML = "Hide Password";
+        s.type = "password";
     }
-}
-
-showPasswordBtn.addEventListener("click",showPassword());
+});
