@@ -13,7 +13,11 @@ router.get("/type/:classificationId", invController.buildByClassificationId);
 router.get("/detail/:inventoryId", invController.buildByInventoryId);
 
 //Route to build the management view.
-router.get("/management", invController.buildManagement);
+router.get(
+  "/management",
+  utilities.checkAccountType,
+  invController.buildManagement
+);
 
 //Route to build the add classification view.
 router.get("/add-classification", invController.buildAddClassification);
@@ -64,9 +68,6 @@ router.get(
 );
 
 //route to delete from database
-router.post(
-  "/delete/",
-  utilities.handleErrors(invController.deleteInventory)
-);
+router.post("/delete/", utilities.handleErrors(invController.deleteInventory));
 
 module.exports = router;
