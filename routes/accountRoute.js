@@ -38,25 +38,25 @@ router.get(
 );
 
 //route to build edit account information view
-router.get(
-  "/update",
-  utilities.handleErrors(accController.buildUpdateAccount)
-);
+router.get("/update", utilities.handleErrors(accController.buildUpdateAccount));
 
 //route to update account information
 router.post(
   "/update",
   regValidate.updateRules(),
   regValidate.checkAccountData,
-  utilities.handleErrors(accController.updateAccInfo),
+  utilities.handleErrors(accController.updateAccInfo)
 );
-
 
 //route to update account password
 router.post(
-  "/update",
+  "/updatePassword",
   regValidate.passwordRules(),
+  regValidate.checkPassword,
   utilities.handleErrors(accController.updatePassword)
 );
+
+//route to log out
+router.post("/logout", utilities.handleErrors(accController.logout));
 
 module.exports = router;

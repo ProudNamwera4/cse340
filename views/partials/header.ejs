@@ -7,10 +7,11 @@
   <div id="tools">
     <% if(!locals.loggedin){ %>
       <a title="Click to log in" href="/account/">My Account</a>
-  <% }else{  
-      const name = locals.accountData.account_firstname %>
-  <a title="Click to log out" href="/account/">Welcome <%- name %>: </a><a id="logout" href="/">Logout</a><%} %>
-  </div> 
+      <% }else{ const name=locals.accountData.account_firstname %>
+       <a id="welcome" title="Click to access account" href="/account/">Welcome <%- name %>: </a>
+        <form id="logoutForm" method="post" action="../account/logout">
+          <button id="logout" type="submit" method="post">Logout</button>
+        </form>
+        <% } %>
+  </div>
 </header>
-
-<script src="../../js/header.js"></script>

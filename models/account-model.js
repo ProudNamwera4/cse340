@@ -76,7 +76,7 @@ async function changePassword (account_password, account_id) {
   try {
     return pool.query(
       'UPDATE public.account SET account_password = $1 WHERE account_id = $2',
-      [account_id, account_password])
+      [account_password,account_id])
   } catch (error) {
     return new Error("password change" + error)
   }

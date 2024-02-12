@@ -171,6 +171,29 @@ validate.passwordRules = () => {
   ];
 };
 
+
+
+/* ******************************
+ * Check password
+ * ***************************** */
+validate.checkPassword = async (req, res, next) => {
+  const { account_password, account_id } = req.body
+  let errors = []
+  errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    res.render("account/update", {
+      errors,
+      title: "Update Account",
+      nav,
+      account_id,
+      account_password,
+    })
+    return
+  }
+  next()
+}
+
 /* ******************************
  * Check data and update account
  * ***************************** */

@@ -256,3 +256,14 @@ th:nth-child(even),td:nth-child(even){
     height: 125px;
     width: 200px;
   }
+
+  #logoutForm{
+    width: 125px;
+    display: inline-block;
+  }
+  #logout{
+    width: 110px;
+  }
+#welcome{
+  font-size: 20px;
+}

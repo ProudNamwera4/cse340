@@ -212,19 +212,6 @@ Util.checkAccountType = (req, res, next) => {
   }
 };
 
-Util.addLogout = (res,next) => {
-  if(document.querySelector("#logout")){
-    document.querySelector("#logout").addEventListener("click", function () {
-      res.locals.loggedin = false;
-      next();
-    });
-  }else{
-    req.flash("notice", "Failed to load enable logout function.");
-    return res.redirect("/account/login");
-  }
-    
-}
-
 
 /* ****************************************
  * Middleware For Handling Errors
