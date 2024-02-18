@@ -5,6 +5,7 @@ const invController = require("../controllers/invController");
 const addVehicleValidate = require("../utilities/inventory-validation");
 const classificationValidate = require("../utilities/inventory-validation");
 const utilities = require("../utilities");
+const { handleErrors } = require("../utilities");
 
 // Route to build inventory by classification view
 router.get("/type/:classificationId", invController.buildByClassificationId);
@@ -69,5 +70,12 @@ router.get(
 
 //route to delete from database
 router.post("/delete/", utilities.handleErrors(invController.deleteInventory));
+
+//route build Cart view
+router.get("/add-to-cart", utilities.handleErrors(invController.buildCart));
+
+//route to add to cart
+router.post("/add-to-cart", utilities.handleErrors(invController.addToCart));   
+
 
 module.exports = router;

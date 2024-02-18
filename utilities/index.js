@@ -198,8 +198,8 @@ Util.checkLogin = (req, res, next) => {
 Util.checkAccountType = (req, res, next) => {
   if (res.locals.loggedin) {
     if (
-      res.locals.accountData.account_type == "Admin" ||
-      res.locals.accountData.account_type == "Employee"
+      res.locals.accountData.account_type.trim() == "Admin" ||
+      res.locals.accountData.account_type.trim() == "Employee"
     ) {
       console.log("checked account");
       next();

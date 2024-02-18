@@ -1,0 +1,31 @@
+<%# The Content Heading %>
+  <h1>
+    <%= title %>
+  </h1>
+
+  <%- messages() %>
+    <% if (errors) { %>
+      <ul class="notice">
+        <% errors.array().forEach(error=> { %>
+          <li>
+            <%= error.msg %>
+          </li>
+          <% }) %>
+      </ul>
+      <% } %>
+
+        <form method="post" action="./add-to-cart">
+          <fieldset>Review vehicle details before entering</fieldset>
+          <label for="account_firstname"> Account First Name:</label>
+        <input id="account_firstname" type="text" name="account_firstname" required value="<%= locals.account_firstname %>">
+        <label for="account_lastname">Last Name: </label>
+        <input id="account_lastname" type="text" name="account_lastname" required value="<%= locals.account_lastname %>">
+        
+          <label for="inv_make">Make</label>
+          <input type="text" id="inv_make" name="inv_make" required placeholder="Min of 3 characters"
+            pattern="^[A-Za-z]+$" value="<%= locals.inv_make %>">
+          <label for="inv_model">Model</label>
+          <input type="text" id="inv_model" name="inv_model" required placeholder="Min of 3 characters"
+            pattern="^[A-Za-z]+$" value="<%= locals.inv_model %>">
+          <button id="addToCartBtn" type="submit">Add to Cart</button>
+        </form>

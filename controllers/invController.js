@@ -315,4 +315,51 @@ invCont.deleteInventory = async function (req, res) {
   }
 };
 
+/* ****************************************
+ *  Build Cart view
+ * *************************************** */
+invCont.buildCart = async function (req, res) {
+  let nav = await utilities.getNav();
+  const { classification_id } = req.body;
+
+  const id = classification_id;
+  const list = await utilities.buildDropDown(id);
+
+  res.render("inventory/add-to-cart", {
+    title: "My Cart",
+    nav,
+    list,
+    errors: null,
+  });
+};
+
+/* ****************************************
+ *  process add to Cart
+ * *************************************** */
+invCont.addToCart = async function (req, res) {
+  let nav = await utilities.getNav();
+  const { account_firstname, account_lastname, inv_make, inv_model, } =
+    req.body;
+  const vehicleData = await invModel.getVehicleByMakeModel(inv_make,inv_model);
+  const regResult = await invModel.addToCart(
+    account_firstname,
+    inv_make,
+    inv_model,
+    vehicleData[0].inv_price,
+  );
+
+  if (regResult && vehicleData) {
+    req.flash("notice", `${vehicleData[0].inv_make} ${vehicleData[0].inv_model}  added to your cart for ${vehicleData[0].inv_price}.`);
+    res.redirect("/inv/management");
+  } else {
+    req.flash("notice", "Sorry, Add to cart failed.");
+    res.status(501).render("inventory/add-to-cart", {
+      title: "Update Account",
+      nav,
+      errors: null,
+    });
+  }
+};
+
+
 module.exports = invCont;
